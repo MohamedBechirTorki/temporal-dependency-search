@@ -1,0 +1,16 @@
+{
+  "nodes": [
+    {"id": "A", "name": "Node A", "type": "component", "valid_from": "2024-01-01T00:00:00Z"},
+    {"id": "B", "name": "Node B", "type": "component", "valid_from": "2024-01-01T00:00:00Z"},
+    {"id": "C", "name": "Node C", "type": "component", "valid_from": "2024-01-01T00:00:00Z"},
+    {"id": "D", "name": "Node D", "type": "component", "valid_from": "2024-01-01T00:00:00Z"},
+    {"id": "E", "name": "Node E", "type": "component", "valid_from": "2024-01-01T00:00:00Z"}
+  ],
+  "dependencies": [
+    {"id": "dep_ab", "source": "A", "target": "B", "type": "DEPENDS_ON", "valid_from": "2024-01-01T00:00:00Z"},
+    {"id": "dep_bc", "source": "B", "target": "C", "type": "DEPENDS_ON", "valid_from": "2024-01-01T00:00:00Z"},
+    {"id": "dep_ca", "source": "C", "target": "A", "type": "DEPENDS_ON", "valid_from": "2024-01-01T00:00:00Z", "valid_to": "2024-07-01T00:00:00Z"},
+    {"id": "dep_cd", "source": "C", "target": "D", "type": "DEPENDS_ON", "valid_from": "2024-01-01T00:00:00Z"},
+    {"id": "dep_ee", "source": "E", "target": "E", "type": "DEPENDS_ON", "valid_from": "2024-01-01T00:00:00Z", "valid_to": "2024-07-01T00:00:00Z"}
+  ]
+}

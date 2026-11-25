@@ -1,0 +1,21 @@
+{
+  "nodes": [
+    {"id": "frontend-app", "name": "Frontend Web App", "type": "frontend", "description": "React client app"},
+    {"id": "api-gateway", "name": "API Gateway", "type": "gateway", "description": "Kong ingress proxy"},
+    {"id": "auth-service", "name": "Auth Service", "type": "service", "description": "OAuth2 token provider"},
+    {"id": "order-service", "name": "Order Service", "type": "service", "description": "Checkout and orders"},
+    {"id": "payment-service", "name": "Payment Service", "type": "service", "description": "Payment orchestration"},
+    {"id": "user-db", "name": "User DB", "type": "database", "description": "PostgreSQL master"},
+    {"id": "order-db", "name": "Order DB", "type": "database", "description": "MongoDB cluster"},
+    {"id": "payment-gateway-ext", "name": "Stripe", "type": "external", "description": "External credit card processor"}
+  ],
+  "dependencies": [
+    {"source": "frontend-app", "target": "api-gateway", "type": "calls", "weight": 1.0},
+    {"source": "api-gateway", "target": "auth-service", "type": "authenticates", "weight": 1.0},
+    {"source": "api-gateway", "target": "order-service", "type": "routes", "weight": 1.0},
+    {"source": "auth-service", "target": "user-db", "type": "queries", "weight": 1.0},
+    {"source": "order-service", "target": "order-db", "type": "queries", "weight": 1.0},
+    {"source": "order-service", "target": "payment-service", "type": "triggers", "weight": 1.0},
+    {"source": "payment-service", "target": "payment-gateway-ext", "type": "charges", "weight": 1.0}
+  ]
+}

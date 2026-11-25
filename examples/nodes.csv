@@ -1,0 +1,9 @@
+id,name,type,description
+frontend-app,Frontend Web App,frontend,React client app
+api-gateway,API Gateway,gateway,Kong ingress proxy
+auth-service,Auth Service,service,OAuth2 token provider
+order-service,Order Service,service,Checkout and orders
+payment-service,Payment Service,service,Payment orchestration
+user-db,User DB,database,PostgreSQL master
+order-db,Order DB,database,MongoDB cluster
+payment-gateway-ext,Stripe,external,External credit card processor

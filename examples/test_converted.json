@@ -1,0 +1,21 @@
+{
+  "nodes": [
+    {"id": "frontend-app", "name": "Frontend App", "type": "application"},
+    {"id": "api-gateway", "name": "API Gateway", "type": "service"},
+    {"id": "order-service", "name": "Order Service", "type": "service"},
+    {"id": "payment-service", "name": "Payment Service", "type": "service"},
+    {"id": "user-db", "name": "User Database", "type": "database"},
+    {"id": "orders-db", "name": "Orders Database", "type": "database"},
+    {"id": "legacy-service", "name": "Legacy Service", "type": "service"}
+  ],
+  "dependencies": [
+    {"source": "frontend-app", "target": "api-gateway", "type": "CALLS", "id": "e1", "valid_from": "2024-01-01T00:00:00Z"},
+    {"source": "api-gateway", "target": "order-service", "type": "ROUTES_TO", "id": "e2", "valid_from": "2024-01-01T00:00:00Z"},
+    {"source": "order-service", "target": "payment-service", "type": "CALLS", "id": "e3", "valid_from": "2024-01-01T00:00:00Z"},
+    {"source": "order-service", "target": "user-db", "type": "READS_FROM", "id": "e4", "valid_from": "2024-01-01T00:00:00Z"},
+    {"source": "order-service", "target": "orders-db", "type": "WRITES_TO", "id": "e5", "valid_from": "2024-01-01T00:00:00Z"},
+    {"source": "payment-service", "target": "orders-db", "type": "WRITES_TO", "id": "e6", "valid_from": "2024-01-01T00:00:00Z"},
+    {"source": "legacy-service", "target": "order-service", "type": "CALLS", "id": "e7", "valid_from": "2024-02-01T00:00:00Z", "valid_to": "2024-08-01T00:00:00Z"},
+    {"source": "user-db", "target": "legacy-service", "type": "REPLICATES_TO", "id": "e8", "valid_from": "2024-01-01T00:00:00Z"}
+  ]
+}

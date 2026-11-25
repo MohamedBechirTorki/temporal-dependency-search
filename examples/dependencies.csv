@@ -1,0 +1,8 @@
+source,target,type,weight
+frontend-app,api-gateway,calls,1.0
+api-gateway,auth-service,authenticates,1.0
+api-gateway,order-service,routes,1.0
+auth-service,user-db,queries,1.0
+order-service,order-db,queries,1.0
+order-service,payment-service,triggers,1.0
+payment-service,payment-gateway-ext,charges,1.0

@@ -1,0 +1,23 @@
+{
+  "nodes": [
+    {"id": "frontend-app", "name": "Frontend Web App", "type": "frontend"},
+    {"id": "api-gateway", "name": "API Gateway", "type": "gateway"},
+    {"id": "auth-service", "name": "Auth Service", "type": "service"},
+    {"id": "order-service", "name": "Order Service", "type": "service"},
+    {"id": "payment-service", "name": "Payment Service", "type": "service"},
+    {"id": "inventory-service", "name": "Inventory Service", "type": "service"},
+    {"id": "user-db", "name": "User PostgreSQL DB", "type": "database"},
+    {"id": "order-db", "name": "Order MongoDB", "type": "database"},
+    {"id": "payment-gateway-ext", "name": "Stripe Gateway", "type": "external"}
+  ],
+  "dependencies": [
+    {"source": "frontend-app", "target": "api-gateway", "type": "calls", "weight": 1.0},
+    {"source": "api-gateway", "target": "auth-service", "type": "authenticates_with", "weight": 1.0},
+    {"source": "api-gateway", "target": "order-service", "type": "routes_to", "weight": 1.0},
+    {"source": "auth-service", "target": "user-db", "type": "reads_writes", "weight": 1.0},
+    {"source": "order-service", "target": "order-db", "type": "stores_in", "weight": 1.0},
+    {"source": "order-service", "target": "payment-service", "type": "triggers", "weight": 1.0},
+    {"source": "order-service", "target": "inventory-service", "type": "checks_stock", "weight": 1.0},
+    {"source": "payment-service", "target": "payment-gateway-ext", "type": "charges", "weight": 1.0}
+  ]
+}
